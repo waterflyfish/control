@@ -1,0 +1,1004 @@
+﻿{
+    "comment":  "Any Firmware, Any Vehicle",
+
+    "version": 1,
+
+    "mavCmdInfo": [
+        {
+            "comment":              "MAV_CMD_NAV_LAST: Used for fake home position waypoint",
+            "id":                   95,
+            "rawName":              "HomeRaw",
+            "friendlyName":         "Home点",
+            "description":          "为任务设置home点.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "基本",
+            "param5": {
+                "label":            "纬度:",
+                "default":          37.803784,
+                "decimalPlaces":    7
+            },
+            "param6": {
+                "label":            "经度:",
+                "default":          -122.462276,
+                "decimalPlaces":    7
+            }
+        },
+        {
+            "id":                   16,
+            "rawName":              "MAV_CMD_NAV_WAYPOINT",
+            "friendlyName":         "航点",
+            "description":          "三维空间中的位置",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "基本",
+            "param1": {
+                "label":            "保持:",
+                "units":            "secs",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "接收:",
+                "units":            "m",
+                "default":          3,
+                "decimalPlaces":    2
+            },
+            "param3": {
+                "label":            "通过:",
+                "units":            "m",
+                "default":          0,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "朝向:",
+                "units":            "radians",
+                "default":          0.0,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   17,
+            "rawName":              "MAV_CMD_NAV_LOITER_UNLIM",
+            "friendlyName":         "盘旋",
+            "description":          "飞行到指定点并以指定半径无限期盘旋",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "盘旋",
+            "param3": {
+                "label":            "半径:",
+                "units":            "m",
+                "default":          50.0,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   18,
+            "rawName":              "MAV_CMD_NAV_LOITER_TURNS",
+            "friendlyName":         "盘旋 (圈数)",
+            "description":          "飞行岛指定点并以指定半径盘旋指定的圈数",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "盘旋",
+            "param1": {
+                "label":            "圈数:",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "半径:",
+                "units":            "m",
+                "default":          50.0,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "开始下一个航点",
+                "enumStrings":      "Center,On Loiter",
+                "enumValues":       "0,1",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":                   19,
+            "rawName":              "MAV_CMD_NAV_LOITER_TIME",
+            "friendlyName":         "盘旋（时间）",
+            "description":          "飞行到指定点并以指定半径盘旋指定时间.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "盘旋",
+            "param1": {
+                "label":            "保持",
+                "units":            "secs",
+                "default":          30,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "半径:",
+                "units":            "m",
+                "default":          50.0,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "开始下一个航点:",
+                "enumStrings":      "Center,On Loiter",
+                "enumValues":       "0,1",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           20,
+            "rawName":      "MAV_CMD_NAV_RETURN_TO_LAUNCH",
+            "friendlyName": "返回home点",
+            "description":  "飞机返回到home点位置.",
+            "friendlyEdit": true,
+            "category":     "基本"
+        },
+        {
+            "id":                   21,
+            "rawName":              "MAV_CMD_NAV_LAND",
+            "friendlyName":         "着陆",
+            "description":          "将飞机降落在当前位置.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "基本",
+            "param1": {
+                "label":            "中止高度:",
+                "units":            "m",
+                "default":          25.0,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "朝向:",
+                "units":            "radians",
+                "default":          0.0,
+                "decimalPlaces":    2
+            },
+            "param3": {
+                "label":            "在Home点着陆：",
+                "enumStrings":      "True,False",
+                "enumValues":       "1,0",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":                   22,
+            "rawName":              "MAV_CMD_NAV_TAKEOFF",
+            "friendlyName":         "起飞",
+            "description":          "从地面起飞，运行到特定位置.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "基本",
+            "param1": {
+                "label":            "俯仰角:",
+                "units":            "deg",
+                "default":          15,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "朝向:",
+                "units":            "radians",
+                "default":          0.0,
+                "decimalPlaces":    2
+            }
+        },
+        { "id": 23, "rawName": "MAV_CMD_NAV_LAND_LOCAL", "friendlyName": "本地降落点","category": "高级" },
+        { "id": 24, "rawName": "MAV_CMD_NAV_TAKEOFF_LOCAL", "friendlyName": "本地起飞点","category": "高级" },
+        { "id": 25, "rawName": "MAV_CMD_NAV_FOLLOW", "friendlyName": "Nav跟随","category": "高级" },
+        {
+            "id":                    30,
+            "rawName":              "MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT",
+            "friendlyName":         "改变高度",
+            "description":          "继续当前航向，并爬升/降落到特定高度。当达到高度时继续下一个任务.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "飞行控制",
+            "param1": {
+                "label":            "模式:",
+                "enumStrings":      "Climb,Neutral,Descend",
+                "enumValues":       "1,0,2",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param7": {
+                "label":            "高度:",
+                "units":            "m",
+                "default":          55,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   31,
+            "rawName":              "MAV_CMD_NAV_LOITER_TO_ALT",
+            "friendlyName":         "盘旋（高度）",
+            "description":          "盘旋在特定位置，直到达到高度.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "盘旋",
+            "param1": {
+                "label":            "朝向等待:",
+                "enumStrings":      "False,True",
+                "enumValues":       "0,1",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "半径:",
+                "units":            "m",
+                "default":          50.0,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "开始下一个航点:",
+                "enumStrings":      "Center,On Loiter",
+                "enumValues":       "0,1",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        { "id": 32, "rawName": "MAV_CMD_DO_FOLLOW", "friendlyName": "跟随","category": "高级" },
+        { "id": 33, "rawName": "MAV_CMD_DO_FOLLOW_REPOSITION", "friendlyName": "载具复位","category": "高级" },
+        {
+            "id":                   80,
+            "rawName":              "MAV_CMD_NAV_ROI",
+            "friendlyName":         "兴趣区域（nav）",
+            "description":          "设置摄像机感兴趣的区域.",
+            "specifiesCoordinate":  true,
+            "standaloneCoordinate": true,
+            "friendlyEdit":         true,
+            "category":             "相机",
+            "param1": {
+                "label":            "模式:",
+                "enumStrings":      "None,Next waypoint,Mission item,Location,ROI item",
+                "enumValues":       "0,1,2,3,4",
+                "default":          3,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "任务索引:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "ROI索引:",
+                "default":          0,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":                   81,
+            "rawName":              "MAV_CMD_NAV_PATHPLANNING",
+            "friendlyName":         "路径规划",
+            "description":          "控制自主路径规划.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "高级",
+            "param1": {
+                "label":            "局部计划:",
+                "enumStrings":      "Disable,Enable,Enable+reset",
+                "enumValues":       "0,1,2",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "全计划:",
+                "enumStrings":      "Disable,Enable,Enable+reset,Enable+reset route only",
+                "enumValues":       "0,1,2,3",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param4": {
+                "label":            "指向目标:",
+                "default":          0,
+                "units":            "deg",
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   82,
+            "rawName":              "MAV_CMD_NAV_SPLINE_WAYPOINT",
+            "friendlyName":         "样条航点",
+            "description":          "使用样条路径转移到3D空间的一个位置.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "基本",
+            "param1": {
+                "label":            "保持:",
+                "units":            "secs",
+                "default":          0,
+                "decimalPlaces":    0
+            }        
+        },
+        { "id": 83, "rawName": "MAV_CMD_NAV_ALTITUDE_WAIT", "friendlyName": "定高","category": "高级" },
+        {
+            "id":                   84,
+            "rawName":              "MAV_CMD_NAV_VTOL_TAKEOFF",
+            "friendlyName":         "VTOL 起飞",
+            "description":          "使用VTOL模式从地面起飞.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "VTOL",
+            "param4": {
+                "label":            "指向:",
+                "units":            "deg",
+                "default":          0.0,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   85,
+            "rawName":              "MAV_CMD_NAV_VTOL_LAND",
+            "friendlyName":         "VTOL 着陆",
+            "description":          "使用VTOL模式着陆.",
+            "specifiesCoordinate":  true,
+            "friendlyEdit":         true,
+            "category":             "VTOL",
+            "param4": {
+                "label":            "朝向:",
+                "units":            "deg",
+                "default":          0.0,
+                "decimalPlaces":    2
+            },
+            "param3": {
+                "label":            "在Home点着陆：",
+                "enumStrings":      "True,False",
+                "enumValues":       "1,0",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           92,
+            "rawName":      "MAV_CMD_NAV_GUIDED_ENABLE",
+            "friendlyName": "导航使能",
+            "description":  "Enable/Disabled guided mode使用/禁用导航模式.",
+            "category":    "高级",
+            "param1": {
+                "label":            "使能",
+                "enumStrings":      "Disable,Enable",
+                "enumValues":       "0,1",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           94,
+            "rawName":      "MAV_CMD_NAV_DELAY",
+            "friendlyName": "Delay until延迟",
+            "description":  "延迟直到到达指定的时间.",
+            "category":     "高级",
+            "param1": {
+                "label":            "保持:",
+                "units":            "secs",
+                "default":          30,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "小时 (utc):",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "分钟 (utc):",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param4": {
+                "label":            "秒 (utc):",
+                "default":          0,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           112,
+            "rawName":      "MAV_CMD_CONDITION_DELAY",
+            "friendlyName": "延迟",
+            "description":  "延迟任务模式几秒.",
+            "friendlyEdit": true,
+            "category":     "基本",
+            "param1": {
+                "label":            "保持:",
+                "units":            "secs",
+                "default":          30,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           113,
+            "rawName":      "MAV_CMD_CONDITION_CHANGE_ALT",
+            "description":  "延迟任务模式直到达到特定的高度.",
+            "friendlyName": "等待高度达到",
+            "category":     "条件",
+            "param1": {
+                "label":            "速率:",
+                "units":            "m/s",
+                "default":          5,
+                "decimalPlaces":    2
+            },
+            "param7": {
+                "label":            "高度:",
+                "units":            "m",
+                "default":          55,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":           114,
+            "rawName":      "MAV_CMD_CONDITION_DISTANCE",
+            "description":  "延迟任务直到到达下一个航点的指定距离内.",
+            "friendlyName": "等待距离",
+            "category":     "条件",
+            "param1": {
+                "label":            "距离:",
+                "units":            "m",
+                "default":          10,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":           115,
+            "rawName":      "MAV_CMD_CONDITION_YAW",
+            "friendlyName": "等待航向",
+            "description":  "延迟任务直到达到特定的航向.",
+            "category":     "条件",
+            "param1": {
+                "label":            "朝向:",
+                "units":            "deg",
+                "default":          0,
+                "decimalPlaces":    1
+            },
+            "param2": {
+                "label":            "速率:",
+                "units":            "degrees/s",
+                "default":          5,
+                "decimalPlaces":    1
+            },
+            "param3": {
+                "label":            "方向:",
+                "enumStrings":      "Clockwise,Counter-Clockwise",
+                "enumValues":       "1,-1",
+                "default":          1
+            },
+            "param4": {
+                "label":            "偏移量:",
+                "enumStrings":      "Relative,Absolute",
+                "enumValues":       "1,0",
+                "default":          1
+            }
+        },
+        { "id": 176, "rawName": "MAV_CMD_DO_SET_MODE", "friendlyName": "设置模式", "category":     "高级" },
+        {
+            "id":           176,
+            "rawName":      "MAV_CMD_DO_SET_MODE",
+            "friendlyName": "设置飞行模式",
+            "description":  "设置飞行模式.",
+            "category":     "高级",
+            "param1": {
+                "label":            "模式:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "自定义模式:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "定制模式:",
+                "default":          0,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           177,
+            "rawName":      "MAV_CMD_DO_JUMP",
+            "friendlyName": "跳到项目",
+            "description":  "任务将在指定的项目继续执行.",
+            "friendlyEdit": true,
+            "category":     "高级",
+            "param1": {
+                "label":            "项目 #:",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "循环:",
+                "default":          10,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           178,
+            "rawName":      "MAV_CMD_DO_CHANGE_SPEED",
+            "friendlyName": "改变速度",
+            "description":  "改变速度/油门设置点.",
+            "category":     "飞行控制",
+            "param1": {
+                "label":            "类型:",
+                "enumStrings":      "Ground Speed",
+                "enumValues":       "0",
+                "default":          0
+            },
+            "param2": {
+                "label":            "速度:",
+                "units":            "m/s",
+                "default":          -1
+            },
+            "param3": {
+                "label":            "油门:",
+                "units":            "%",
+                "default":          -1
+            },
+            "param4": {
+                "label":            "偏移量:",
+                "enumStrings":      "Relative,Absolute",
+                "enumValues":       "0,1",
+                "default":          1
+            }
+        },
+        {
+            "id":                   179,
+            "rawName":              "MAV_CMD_DO_SET_HOME",
+            "friendlyName":         "设置home位置",
+            "description":          "改变home点位置为当前位置或者特定位置.",
+            "specifiesCoordinate":  true,
+            "standaloneCoordinate": true,
+            "friendlyEdit":         true,
+            "category":             "高级",
+            "param1": {
+                "label":            "模式:",
+                "enumStrings":      "Vehicle position,Specified position",
+                "enumValues":       "1,0",
+                "default":          0
+            }
+        },
+        { "id": 180, "rawName": "MAV_CMD_DO_SET_PARAMETER", "friendlyName": "设置参数", "category": "高级" },
+        {
+            "id":           181,
+            "rawName":      "MAV_CMD_DO_SET_RELAY",
+            "friendlyName": "设置继电器",
+            "description":  "将继电器设置好.",
+            "category":     "高级" ,
+            "param1": {
+                "label":            "继电器 #:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "值:",
+                "default":          0
+            }
+        },
+        {
+            "id":           182,
+            "rawName":      "MAV_CMD_DO_REPEAT_RELAY",
+            "friendlyName": "周期继电器",
+            "description":  "周期继电器打开/关闭所需的周期/时间.",
+            "category":     "高级" ,
+            "param1": {
+                "label":            "继电器 #:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "周期:",
+                "default":          1,
+                "units":            "数目",
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "时间:",
+                "default":          10,
+                "units":            "secs",
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           183,
+            "rawName":      "MAV_CMD_DO_SET_SERVO",
+            "friendlyName": "设置舵机",
+            "description":  "设置舵机为特定的PWM值.",
+            "friendlyEdit": true,
+            "category":     "高级" ,
+            "param1": {
+                "label":            "伺服:",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "PWM:",
+                "default":          1500,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           184,
+            "rawName":      "MAV_CMD_DO_REPEAT_SERVO",
+            "friendlyName": "循环伺服",
+            "description":  "设置舵机为指定的PWM值.",
+            "category":     "高级" ,
+            "param1": {
+                "label":            "伺服:",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "PWM:",
+                "default":          1000,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "周期:",
+                "default":          1,
+                "units":            "count",
+                "decimalPlaces":    0
+            },
+            "param4": {
+                "label":            "时间:",
+                "default":          10,
+                "units":            "secs",
+                "decimalPlaces":    0
+            }
+        },
+        { "id": 185, "rawName": "MAV_CMD_DO_FLIGHTTERMINATION", "friendlyName": "飞行结束", "category": "高级" },
+        {
+            "id":                   189,
+            "rawName":              "MAV_CMD_DO_LAND_START",
+            "friendlyName":         "开始着陆",
+            "description":          "指示着陆顺序的开始标记.",
+            "friendlyEdit":         true,
+            "category":             "飞行控制"
+        },
+        { "id": 190, "rawName": "MAV_CMD_DO_RALLY_LAND", "friendlyName": "集合地", "category": "高级" },
+        { "id": 191, "rawName": "MAV_CMD_DO_GO_AROUND", "friendlyName": "环绕", "category": "高级" },
+        { "id": 192, "rawName": "MAV_CMD_DO_REPOSITION", "friendlyName": "储藏", "category": "高级" },
+        { "id": 193, "rawName": "MAV_CMD_DO_PAUSE_CONTINUE", "friendlyName": "暂停或继续", "category": "高级" },
+        {
+            "id":                   194,
+            "rawName":              "MAV_CMD_DO_SET_REVERSE",
+            "friendlyName":         "设置移动方向" ,
+            "description":          "设置移动方向为正向或者反向.",
+            "friendlyEdit":         true,
+            "category":             "高级",
+            "param1": {
+                "label":            "方向:",
+                "enumStrings":      "Forward,Reverse",
+                "enumValues":       "0,1",
+                "default":          0
+            }
+        },
+        { "id": 200, "rawName": "MAV_CMD_DO_CONTROL_VIDEO", "friendlyName": "控制视频", "category": "高级" },
+        {
+            "id":                   201,
+            "rawName":              "MAV_CMD_DO_SET_ROI",
+            "friendlyName":         "兴趣区域(cmd)" ,
+            "description":          "设置摄像机的感兴趣区域.",
+            "specifiesCoordinate":  true,
+            "standaloneCoordinate": true,
+            "friendlyEdit":         true,
+            "category":             "相机",
+            "param1": {
+                "label":            "模式:",
+                "enumStrings":      "None,Next waypoint,Mission item,Location,ROI item",
+                "enumValues":       "0,1,2,3,4",
+                "default":          3,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "任务索引:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "ROI索引:",
+                "default":          0,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           202,
+            "rawName":      "MAV_CMD_DO_DIGICAM_CONFIGURE",
+            "friendlyName": "相机配置",
+            "description":  "配置板载摄像机控制器.",
+            "category":     "相机",
+            "param1": {
+                "label":            "模式:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "窄板:",
+                "default":          60,
+                "units":            "1/secs",
+                "decimalPlaces":    0
+            },
+            "param3": {
+                "label":            "口径:",
+                "default":          4,
+                "units":            "F stop",
+                "decimalPlaces":    1
+            },
+            "param4": {
+                "label":            "ISO:",
+                "default":          200,
+                "decimalPlaces":    0
+            },
+            "param5": {
+                "label":            "曝光:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param6": {
+                "label":            "命令:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param7": {
+                "label":            "削减:",
+                "default":          0,
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":           203,
+            "friendlyName": "相机控制",
+            "rawName":      "MAV_CMD_DO_DIGICAM_CONTROL",
+            "description":  "控制板载相机.",
+            "category":     "相机",
+            "param1": {
+                "label":            "会话:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "缩放:",
+                "default":          0,
+                "decimalPlaces":    3
+            },
+            "param3": {
+                "label":            "步骤:",
+                "default":          0,
+                "decimalPlaces":    3
+            },
+            "param4": {
+                "label":            "对焦锁定:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param5": {
+                "label":            "命令:",
+                "default":          0,
+                "decimalPlaces":    0
+            },
+            "param6": {
+                "label":            "Id:",
+                "default":          0,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":           204,
+            "rawName":      "MAV_CMD_DO_MOUNT_CONFIGURE",
+            "friendlyName": "配置安装",
+            "description":  "配置机载安装 (e.g. 云台).",
+            "category":     "高级",
+            "param1": {
+                "label":            "模式:",
+                "default":          0,
+                "decimalPlaces":    0,
+                "enumStrings":      "Retract,Neutral,Mavlink Targeting,RC Targeting,GPS Point",
+                "enumValues":       "0,1,2,3,4"
+            },
+            "param2": {
+                "label":            "稳定滚角:",
+                "default":          0,
+                "decimalPlaces":    0,
+                "enumStrings":      "No,Yes",
+                "enumValues":       "0,1"
+            },
+            "param3": {
+                "label":            "稳定仰角:",
+                "default":          0,
+                "decimalPlaces":    0,
+                "enumStrings":      "No,Yes",
+                "enumValues":       "0,1"
+            },
+            "param4": {
+                "label":            "稳定偏航角:",
+                "default":          0,
+                "decimalPlaces":    0,
+                "enumStrings":      "No,Yes",
+                "enumValues":       "0,1"
+            }
+        },
+        {
+            "id":           205,
+            "rawName":      "MAV_CMD_DO_MOUNT_CONTROL",
+            "friendlyName": "从之挂载",
+            "description":  "控制载具挂载",
+            "category":     "高级",
+            "param1": {
+                "label":            "纬度:",
+                "default":          0,
+                "units":            "deg",
+                "decimalPlaces":    7
+            },
+            "param2": {
+                "label":            "经度:",
+                "default":          0,
+                "units":            "deg",
+                "decimalPlaces":    7
+            },
+            "param3": {
+                "label":            "高度:",
+                "default":          0,
+                "decimalPlaces":    7
+            },
+            "param7": {
+                "label":            "模式:",
+                "default":          0,
+                "decimalPlaces":    0,
+                "enumStrings":      "Retract,Neutral,Mavlink Targeting,RC Targeting,GPS Point",
+                "enumValues":       "0,1,2,3,4"
+            }
+        },
+        {
+            "id":           206,
+            "rawName":      "MAV_CMD_DO_SET_CAM_TRIGG_DIST",
+            "friendlyName": "相机触发距离",
+            "description":  "设置相机触发距离.",
+            "category":     "相机",
+            "param1": {
+                "label":            "距离",
+                "default":          25,
+                "units":            "m",
+                "decimalPlaces":    2
+            }
+        },
+        {
+            "id":                   207,
+            "rawName":              "MAV_CMD_DO_FENCE_ENABLE",
+            "friendlyName":         "启用地理围栏",
+            "description":          "启用/禁用地理围栏.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "安全",
+            "param1": {
+                "label":            "使能:",
+                "enumStrings":      "Disable,Disable floor only,Enable",
+                "enumValues":       "0,2,1",
+                "default":          1,
+                "decimalPlaces":    0
+            }
+        },
+        {
+            "id":                   208,
+            "rawName":              "MAV_CMD_DO_PARACHUTE",
+            "friendlyName":         "触发降落伞",
+            "description":          "启用/禁用地理围栏.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "安全"
+        },
+        { "id": 209, "rawName": "MAV_CMD_DO_MOTOR_TEST", "friendlyName": "电机测试", "category": "高级" },
+        {
+            "id":                   210,
+            "rawName":              "MAV_CMD_DO_INVERTED_FLIGHT",
+            "friendlyName":         "反向飞行",
+            "description":          "改变为/从反向飞行.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "飞行控制",
+            "param1": {
+                "label":            "翻转:",
+                "enumStrings":      "Normal,Inverted",
+                "enumValues":       "0,1",
+                "default":          0
+            }
+        },
+        {
+            "id":                   211,
+            "rawName":              "MAV_CMD_DO_GRIPPER",
+            "friendlyName":         "夹持器",
+            "description":          "操作EPM夹持器.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "高级",
+            "param1": {
+                "label":            "夹持器编号:",
+                "default":          1,
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "动作:",
+                "enumStrings":      "Release,Grab",
+                "enumValues":       "0,1",
+                "default":          0
+            }
+        },
+        {
+            "id":                   212,
+            "rawName":              "MAV_CMD_DO_AUTOTUNE_ENABLE",
+            "friendlyName":         "自动调谐使能",
+            "description":          "自动调谐使能.",
+            "specifiesCoordinate":  false,
+            "friendlyEdit":         true,
+            "category":             "高级",
+            "param2": {
+                "label":            "使能:",
+                "enumStrings":      "Enable,Disable",
+                "enumValues":       "1,0",
+                "default":          1
+            }
+        },
+        { "id": 220, "rawName": "MAV_CMD_DO_MOUNT_CONTROL_QUAT", "category": "高级" },
+        { "id": 221, "rawName": "MAV_CMD_DO_GUIDED_MASTER", "category": "高级" },
+        {
+            "id":           222,
+            "rawName":      "MAV_CMD_DO_GUIDED_LIMITS",
+            "friendlyName": "导航限制",
+            "description":  "外部控制的设置限制",
+            "category":     "高级",
+            "param1": {
+                "label":            "超时:",
+                "default":          0,
+                "units":            "secs",
+                "decimalPlaces":    0
+            },
+            "param2": {
+                "label":            "最小高度:",
+                "default":          25,
+                "units":            "m",
+                "decimalPlaces":    2
+            },
+            "param3": {
+                "label":            "最大高度:",
+                "units":            "m",
+                "default":          100,
+                "decimalPlaces":    2
+            },
+            "param4": {
+                "label":            "限制:",
+                "default":          25,
+                "units":            "m",
+                "decimalPlaces":    2
+            }
+        },
+        { "id": 241, "rawName": "MAV_CMD_PREFLIGHT_CALIBRATION", "friendlyName": "校准", "category": "高级" },
+        { "id": 242, "rawName": "MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS", "friendlyName": "设置传感器偏移量", "category": "高级" },
+        { "id": 243, "rawName": "MAV_CMD_PREFLIGHT_UAVCAN", "friendlyName": "UAVCAN配置", "category": "高级" },
+        { "id": 245, "rawName": "MAV_CMD_PREFLIGHT_STORAGE", "friendlyName": "存贮参数", "category": "高级" },
+        { "id": 246, "rawName": "MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN", "friendlyName": "重启或关闭载具" },
+        { "id": 252, "rawName": "MAV_CMD_OVERRIDE_GOTO", "friendlyName": "覆盖", "category": "高级" },
+        { "id": 300, "rawName": "MAV_CMD_MISSION_START", "friendlyName": "任务开始", "category": "高级" },
+        { "id": 400, "rawName": "MAV_CMD_COMPONENT_ARM_DISARM", "friendlyName": "解锁或上锁", "category": "高级" },
+        { "id": 410, "rawName": "MAV_CMD_GET_HOME_POSITION", "friendlyName": "获取home点位置", "category": "高级" },
+        { "id": 500, "rawName": "MAV_CMD_START_RX_PAIR", "friendlyName": "绑定Spektrum接收器", "category": "高级" },
+        { "id": 510, "rawName": "MAV_CMD_GET_MESSAGE_INTERVAL", "friendlyName": "获取消息时间间隔", "category": "高级" },
+        { "id": 511, "rawName": "MAV_CMD_SET_MESSAGE_INTERVAL", "friendlyName": "设置消息时间间隔", "category": "高级" },
+        { "id": 520, "rawName": "MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES", "friendlyName": "获取性能", "category": "高级" },
+        { "id": 2000, "rawName": "MAV_CMD_IMAGE_START_CAPTURE", "friendlyName": "开启图像捕捉", "category": "高级" },
+        { "id": 2001, "rawName": "MAV_CMD_IMAGE_STOP_CAPTURE", "friendlyName": "停止图像捕捉" },
+        { "id": 2003, "rawName": "MAV_CMD_DO_TRIGGER_CONTROL", "friendlyName": "触发控制" },
+        { "id": 2500, "rawName": "MAV_CMD_VIDEO_START_CAPTURE", "friendlyName": "开启视频捕捉", "category": "高级" },
+        { "id": 2501, "rawName": "MAV_CMD_VIDEO_STOP_CAPTURE", "friendlyName": "停止视频捕捉", "category": "高级" },
+        { "id": 2800, "rawName": "MAV_CMD_PANORAMA_CREATE", "friendlyName": "创建全景", "category": "高级" },
+        {
+            "id": 3000,
+            "rawName":      "MAV_CMD_DO_VTOL_TRANSITION",
+            "friendlyName": "VTOL转变",
+            "description":  "执行飞行模式转变",
+            "category":     "VTOL",
+            "param1": {
+                "label":            "模式:",
+                "default":          3,
+                "enumStrings":      "Hover Mode,Plane Mode",
+                "enumValues":       "3,4"
+            }
+        },
+        { "id": 30001, "rawName": "MAV_CMD_PAYLOAD_PREPARE_DEPLOY", "friendlyName": "Payload准备部署", "category": "高级" },
+        { "id": 30002, "rawName": "MAV_CMD_PAYLOAD_CONTROL_DEPLOY", "friendlyName": "Payload控制部署", "category": "高级" }
+    ]
+}

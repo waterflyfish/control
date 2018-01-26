@@ -1,0 +1,35 @@
+[
+        {
+            "name":             "xAxis",
+            "shortDescription": "x轴",
+            "type":             "double",
+            "decimalPlaces":    1
+        },
+        {
+            "name":             "yAxis",
+            "shortDescription": "y轴",
+            "type":             "double",
+            "decimalPlaces":    1
+        },
+        {
+            "name":             "zAxis",
+            "shortDescription": "z轴",
+            "type":             "double",
+            "decimalPlaces":    1
+        },
+        {
+            "name":             "clipCount1",
+            "shortDescription": "切割数(1)",
+            "type":             "uint32"
+        },
+        {
+            "name":             "clipCount2",
+            "shortDescription": "切割数(2)",
+            "type":             "uint32"
+        },
+        {
+            "name":             "clipCount3",
+            "shortDescription": "切割数(3)",
+            "type":             "uint32"
+        }
+]

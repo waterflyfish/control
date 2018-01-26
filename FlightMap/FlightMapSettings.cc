@@ -1,0 +1,177 @@
+﻿/****************************************************************************
+ *
+ *   (c) 2009-2016 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ *
+ * QGroundControl is licensed according to the terms in the file
+ * COPYING.md in the root of the source code directory.
+ *
+ ****************************************************************************/
+
+
+#include "FlightMapSettings.h"
+
+#include <QSettings>
+#include <QtQml>
+
+const char* FlightMapSettings::_defaultMapProvider      = "Bing";                 // Bing is default since it support full street/satellite/hybrid set
+const char* FlightMapSettings::_settingsGroup           = "FlightMapSettings";
+const char* FlightMapSettings::_generalGroup            = "General";
+const char* FlightMapSettings::_mapProviderKey          = "MapProvider";
+const char* FlightMapSettings::_mapTypeKey              = "MapType";
+
+FlightMapSettings::FlightMapSettings(QGCApplication* app)
+    : QGCTool(app)
+    , _mapProvider(_defaultMapProvider)
+{
+}
+
+void FlightMapSettings::setToolbox(QGCToolbox *toolbox)
+{
+    QGCTool::setToolbox(toolbox);
+    qmlRegisterUncreatableType<FlightMapSettings> ("QGroundControl", 1, 0, "FlightMapSetting", "Reference only");
+    _supportedMapProviders << "Bing";
+    _supportedMapProviders<< "GoogleChina";
+#ifndef QGC_NO_GOOGLE_MAPS
+    _supportedMapProviders << "Google";
+#endif
+    _supportedMapProviders << "Statkart";
+    _loadSettings();
+}
+
+void FlightMapSettings::_storeSettings(void)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    settings.setValue(_mapProviderKey, _supportedMapProviders.contains(_mapProvider) ? _mapProvider : _defaultMapProvider);
+}
+
+void FlightMapSettings::_loadSettings(void)
+{
+#ifdef QGC_NO_GOOGLE_MAPS
+    _mapProvider = _defaultMapProvider;
+#else
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    _mapProvider = settings.value(_mapProviderKey, _defaultMapProvider).toString();
+    if (!_supportedMapProviders.contains(_mapProvider)) {
+        _mapProvider = _defaultMapProvider;
+    }
+#endif
+    _setMapTypesForCurrentProvider();
+}
+
+QString FlightMapSettings::mapProvider(void)
+{
+    return _mapProvider;
+}
+
+void FlightMapSettings::setMapProvider(const QString& mapProvider)
+{
+    if (_supportedMapProviders.contains(mapProvider)) {
+        _mapProvider = mapProvider;
+        _storeSettings();
+        _setMapTypesForCurrentProvider();
+        emit mapProviderChanged(mapProvider);
+    }
+}
+
+void FlightMapSettings::_setMapTypesForCurrentProvider(void)
+{
+    QSettings settings;
+    bool language;
+    _language = settings.value ("language",language).toBool ();
+    _mapTypes.clear();
+#ifdef QGC_NO_GOOGLE_MAPS
+    _mapTypes << "Street Map" << "Satellite Map" << "Hybrid Map";
+#else
+    if (_mapProvider == "Bing") {
+        if(!_language){
+            _mapTypes <<QStringLiteral("街道地图")<<QStringLiteral("卫星地图")<<QStringLiteral("混合地图");
+        }else{
+            _mapTypes << "Street Map" << "Satellite Map" << "Hybrid Map";
+        }
+    } else if (_mapProvider == tr("Google")) {
+        if(!_language){
+            _mapTypes << QStringLiteral("街道地图")<<QStringLiteral("卫星地图")<<QStringLiteral("地形地图");
+        }else{
+            _mapTypes << "Street Map" << "Satellite Map" << "Terrain Map";
+        }
+    } else if (_mapProvider == "Statkart") {
+        _mapTypes << "Topo2";
+    } else if (_mapProvider == "GoogleChina"){
+        if(!_language){
+            _mapTypes<<QStringLiteral("街道地图")<<QStringLiteral("卫星地图")<<QStringLiteral("地形地图");
+        }else{
+            _mapTypes <<"Street Map"<<"Satellite Map"<<"Terrain Map";
+        }
+    }
+#endif
+    emit mapTypesChanged(_mapTypes);
+}
+
+QString FlightMapSettings::mapType(void)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+//    settings.beginGroup(_mapProvider);
+//    qDebug()<<"jjjj"<<settings.value(_mapTypeKey, "Satellite Map").toString();
+    QString maptype = settings.value(_mapTypeKey, "Satellite Map").toString();
+    if(!_mapTypes.contains (maptype)){
+        settings.setValue (_mapTypeKey,_mapTypes[0]);
+    }
+//    qDebug()<<"ooooooooo"<<settings.value(_mapTypeKey, "Satellite Map").toString();
+    QString en_maptype = settings.value(_mapTypeKey, "Satellite Map").toString();
+    if(en_maptype == QStringLiteral("街道地图"))
+        en_maptype = "Street Map";
+    else if(en_maptype == QStringLiteral("卫星地图"))
+        en_maptype = "Satellite Map";
+    else if(en_maptype == QStringLiteral("地形地图"))
+        en_maptype = "Terrain Map";
+    else if(en_maptype == QStringLiteral("混合地图"))
+        en_maptype = "Hybrid Map";
+
+//    qDebug()<<"en_maptype : ***************";
+    return en_maptype;
+
+}
+
+void FlightMapSettings::setMapType(const QString& mapType)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+//    settings.beginGroup(_mapProvider);
+    settings.setValue(_mapTypeKey, mapType);
+    emit mapTypeChanged(mapType);
+}
+
+void FlightMapSettings::saveMapSetting (const QString &mapName, const QString& key, const QString& value)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    settings.beginGroup(mapName);
+    settings.setValue(key, value);
+}
+
+QString FlightMapSettings::loadMapSetting (const QString &mapName, const QString& key, const QString& defaultValue)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    settings.beginGroup(mapName);
+    return settings.value(key, defaultValue).toString();
+}
+
+void FlightMapSettings::saveBoolMapSetting (const QString &mapName, const QString& key, bool value)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    settings.beginGroup(mapName);
+    settings.setValue(key, value);
+}
+
+bool FlightMapSettings::loadBoolMapSetting (const QString &mapName, const QString& key, bool defaultValue)
+{
+    QSettings settings;
+    settings.beginGroup(_settingsGroup);
+    settings.beginGroup(mapName);
+    return settings.value(key, defaultValue).toBool();
+}

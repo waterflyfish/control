@@ -1,0 +1,58 @@
+[
+        {
+            "name":             "roll",
+            "shortDescription": "滚转角",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "deg"
+        },
+        {
+            "name":             "pitch",
+            "shortDescription": "俯仰角",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "deg"
+        },
+        {
+            "name":             "heading",
+            "shortDescription": "朝向",
+            "type":             "double",
+            "decimalPlaces":    0,
+            "units":            "deg"
+        },
+        {
+            "name":             "groundSpeed",
+            "shortDescription": "地速",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "m/s"
+        },
+        {
+            "name":             "airSpeed",
+            "shortDescription": "空速",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "m/s"
+        },
+        {
+            "name":             "climbRate",
+            "shortDescription": "爬升率",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "m/s"
+        },
+        {
+            "name":             "altitudeRelative",
+            "shortDescription": "相对高度",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "m"
+        },
+        {
+            "name":             "altitudeAMSL",
+            "shortDescription": "高度",
+            "type":             "double",
+            "decimalPlaces":    1,
+            "units":            "m"
+        }
+]
